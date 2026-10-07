@@ -12,7 +12,7 @@ export default function AuthPage() {
   }
 
   return (
-    <PageContainer className="min-h-screen bg-[#f0f2f5] px-4 py-8 sm:py-12 lg:flex lg:items-center dark:bg-[#0a0a0a]">
+    <PageContainer className="min-h-screen bg-[#f0f2f5] px-4 py-8 sm:py-12 flex-col lg:flex-row items-center lg:items-center justify-center lg:justify-between dark:bg-[#0a0a0a]">
       <div
         className="pointer-events-none fixed inset-0 hidden overflow-hidden dark:block"
         aria-hidden="true"
@@ -36,10 +36,10 @@ export default function AuthPage() {
         {/* Left section: About Route Academy (hidden on mobile, visible on lg) */}
         <div className="hidden lg:flex lg:flex-col lg:items-start lg:gap-6">
           <h1 className="text-5xl font-extrabold tracking-tight text-[#00298d] dark:text-[#5c9dff] sm:text-6xl">
-            Route Posts
+            Social App
           </h1>
           <p className="mt-4 text-2xl font-medium leading-snug text-slate-800 dark:text-[#e4e6eb]">
-            Connect with friends and the world around you on Route Posts.
+            Connect with friends and the world around you on Social App.
           </p>
           <div className="mt-6 rounded-2xl border border-[#c9d5ff] bg-white/80 dark:border-[#2d2e2f] dark:bg-[#18191a]/90 p-4 shadow-sm backdrop-blur sm:p-5">
             <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-[#00298d] dark:text-[#5c9dff]">
@@ -103,11 +103,11 @@ export default function AuthPage() {
         <div className="w-full max-w-107.5">
           {/* On mobile only: small heading and subheading */}
           <div className="lg:hidden">
-            <h1 className="text-3xl font-extrabold text-[#00298d] dark:text-[#5c9dff]">
-              Route Posts
+            <h1 className="text-2xl font-extrabold text-[#00298d] dark:text-[#5c9dff]">
+              Social App
             </h1>
             <p className="mt-1 text-sm text-slate-500 dark:text-[#b0b3b8]">
-              Connect with friends and the world around you on Route Posts.
+              Connect with friends and the world around you on Social App.
             </p>
           </div>
 
@@ -136,12 +136,12 @@ export default function AuthPage() {
 
             {/* Heading and subheading */}
             <h2 className="text-2xl font-extrabold text-slate-900 dark:text-[#e4e6eb]">
-              {tab === "signin" ? "Log in to Route Posts" : "Create New Account"}
+              {tab === "signin" ? "Log in to Social App" : "Create New Account"}
             </h2>
             <p className="mt-1 text-sm text-slate-500 dark:text-[#b0b3b8]">
               {tab === "signin"
                 ? "Log in and continue your social journey."
-                : "Join the Route Posts community today."}
+                : "Join the Social App community today."}
             </p>
 
             {/* Form */}
