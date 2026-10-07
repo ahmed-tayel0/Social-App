@@ -104,7 +104,7 @@ export default function FeedPage() {
             </button>
           </div>
         </div>
-
+        <SuggestedFriends variant="compact" />
         {/* Create Post */}
         <CreatePost />
 
@@ -140,7 +140,9 @@ export default function FeedPage() {
             <span className="text-xs font-semibold text-slate-400">Loading more...</span>
           )}
           {!feed.hasNextPage && posts.length > 0 && (
-            <span className="text-xs font-semibold text-slate-400">You reached the end</span>
+            <span className="text-xs font-semibold text-slate-400">
+              You reached the end
+            </span>
           )}
         </div>
       </section>
