@@ -39,6 +39,9 @@ export default function SettingsPage() {
         </div>
         <ChangePasswordForm />
       </section>
+      <p className="pt-2 pb-4 text-center text-xs font-semibold text-slate-500 dark:text-[#b0b3b8]">
+        Made by Ahmed Tayel 🩶
+      </p>
     </div>
   );
 }

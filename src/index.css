@@ -97,3 +97,61 @@ html.dark select option:hover {
 select option {
   padding: 8px;
 }
+
+/* ============================================
+   Ambient Blob Animations — Dark Mode Background
+   Uses radial-gradient instead of filter:blur to
+   guarantee 60fps composited animations.
+   ============================================ */
+
+@keyframes blobBreathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: var(--blob-base-opacity);
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: calc(var(--blob-base-opacity) * 1.6);
+  }
+}
+
+@keyframes blobBreatheCenter {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: var(--blob-base-opacity);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.10);
+    opacity: calc(var(--blob-base-opacity) * 2);
+  }
+}
+
+.blob-1 {
+  --blob-base-opacity: 0.07;
+  animation: blobBreathe 11s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.blob-2 {
+  --blob-base-opacity: 0.07;
+  animation: blobBreathe 13s ease-in-out infinite;
+  animation-delay: -3s;
+  will-change: transform, opacity;
+}
+
+.blob-3 {
+  --blob-base-opacity: 0.03;
+  animation: blobBreatheCenter 15s ease-in-out infinite;
+  animation-delay: -6s;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blob-1,
+  .blob-2,
+  .blob-3 {
+    animation: none !important;
+  }
+}

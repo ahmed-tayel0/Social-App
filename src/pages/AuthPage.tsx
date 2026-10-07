@@ -17,9 +17,17 @@ export default function AuthPage() {
         className="pointer-events-none fixed inset-0 hidden overflow-hidden dark:block"
         aria-hidden="true"
       >
-        <div className="absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-[#1877f2] opacity-[0.09] blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-[#1877f2] opacity-[0.09] blur-3xl" />
-        <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#5c9dff] opacity-[0.05] blur-3xl" />
+        <div className="absolute -top-40 -right-40 h-125 w-125 rounded-full bg-[#1877f2] opacity-[0.09] blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 h-125 w-125 rounded-full bg-[#1877f2] opacity-[0.09] blur-3xl" />
+        <div className="absolute left-1/2 top-1/2 h-150 w-150 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#5c9dff] opacity-[0.05] blur-3xl" />
+      </div>
+      <div
+        className="pointer-events-none fixed inset-0 overflow-hidden dark:hidden"
+        aria-hidden="true"
+      >
+        <div className="absolute -top-40 -right-40 h-125 w-125 rounded-full bg-[#1877f2] opacity-20 blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 h-125 w-125 rounded-full bg-[#8b5cf6] opacity-20 blur-3xl" />
+        <div className="absolute left-1/2 top-1/2 h-150 w-150 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#06b6d4] opacity-15 blur-3xl" />
       </div>
       <div className="fixed right-4 top-4 z-50">
         <ThemeToggleButton />
@@ -48,31 +56,41 @@ export default function AuthPage() {
             </p>
             <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3">
               <div className="rounded-xl border border-[#c9d5ff] bg-[#f2f6ff] px-3 py-2 dark:border-[#2d2e2f] dark:bg-[#242526]">
-                <p className="text-base font-extrabold text-[#00298d] dark:text-[#5c9dff]">2012</p>
+                <p className="text-base font-extrabold text-[#00298d] dark:text-[#5c9dff]">
+                  2012
+                </p>
                 <p className="text-[11px] font-bold uppercase tracking-wide text-slate-600 dark:text-[#b0b3b8]">
                   FOUNDED
                 </p>
               </div>
               <div className="rounded-xl border border-[#c9d5ff] bg-[#f2f6ff] px-3 py-2 dark:border-[#2d2e2f] dark:bg-[#242526]">
-                <p className="text-base font-extrabold text-[#00298d] dark:text-[#5c9dff]">40K+</p>
+                <p className="text-base font-extrabold text-[#00298d] dark:text-[#5c9dff]">
+                  40K+
+                </p>
                 <p className="text-[11px] font-bold uppercase tracking-wide text-slate-600 dark:text-[#b0b3b8]">
                   GRADUATES
                 </p>
               </div>
               <div className="rounded-xl border border-[#c9d5ff] bg-[#f2f6ff] px-3 py-2 dark:border-[#2d2e2f] dark:bg-[#242526]">
-                <p className="text-base font-extrabold text-[#00298d] dark:text-[#5c9dff]">50+</p>
+                <p className="text-base font-extrabold text-[#00298d] dark:text-[#5c9dff]">
+                  50+
+                </p>
                 <p className="text-[11px] font-bold uppercase tracking-wide text-slate-600 dark:text-[#b0b3b8]">
                   PARTNER COMPANIES
                 </p>
               </div>
               <div className="rounded-xl border border-[#c9d5ff] bg-[#f2f6ff] px-3 py-2 dark:border-[#2d2e2f] dark:bg-[#242526]">
-                <p className="text-base font-extrabold text-[#00298d] dark:text-[#5c9dff]">5</p>
+                <p className="text-base font-extrabold text-[#00298d] dark:text-[#5c9dff]">
+                  5
+                </p>
                 <p className="text-[11px] font-bold uppercase tracking-wide text-slate-600 dark:text-[#b0b3b8]">
                   BRANCHES
                 </p>
               </div>
               <div className="rounded-xl border border-[#c9d5ff] bg-[#f2f6ff] px-3 py-2 dark:border-[#2d2e2f] dark:bg-[#242526]">
-                <p className="text-base font-extrabold text-[#00298d] dark:text-[#5c9dff]">20</p>
+                <p className="text-base font-extrabold text-[#00298d] dark:text-[#5c9dff]">
+                  20
+                </p>
                 <p className="text-[11px] font-bold uppercase tracking-wide text-slate-600 dark:text-[#b0b3b8]">
                   DIPLOMAS AVAILABLE
                 </p>
@@ -85,7 +103,9 @@ export default function AuthPage() {
         <div className="w-full max-w-107.5">
           {/* On mobile only: small heading and subheading */}
           <div className="lg:hidden">
-            <h1 className="text-3xl font-extrabold text-[#00298d] dark:text-[#5c9dff]">Route Posts</h1>
+            <h1 className="text-3xl font-extrabold text-[#00298d] dark:text-[#5c9dff]">
+              Route Posts
+            </h1>
             <p className="mt-1 text-sm text-slate-500 dark:text-[#b0b3b8]">
               Connect with friends and the world around you on Route Posts.
             </p>
