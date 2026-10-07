@@ -63,7 +63,7 @@ export default function Navbar() {
             className="h-9 w-9 rounded-xl object-cover"
           />
           <p className="hidden text-xl font-extrabold text-slate-900 sm:block dark:text-[#e4e6eb]">
-            Route Social
+            Social App
           </p>
         </div>
 
