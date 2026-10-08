@@ -47,7 +47,7 @@ export default function FeedPage() {
   return (
     <div className="grid gap-4 xl:grid-cols-[240px_minmax(0,1fr)_300px]">
       {/* Left sidebar (xl only) */}
-      <aside className="hidden h-fit space-y-3 xl:sticky xl:top-[84px] xl:block">
+      <aside className="hidden h-fit space-y-3 xl:sticky xl:top-21 xl:block">
         <FeedSidebar active={filter} onChange={setFilter} />
       </aside>
 
@@ -148,7 +148,7 @@ export default function FeedPage() {
       </section>
 
       {/* Right sidebar (xl only) */}
-      <aside className="hidden h-fit xl:sticky xl:top-[84px] xl:block">
+      <aside className="hidden h-fit xl:sticky xl:top-21 xl:block">
         <SuggestedFriends />
       </aside>
     </div>

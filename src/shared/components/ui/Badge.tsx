@@ -13,7 +13,7 @@ export const Badge = ({ count, max = 99, className }: BadgeProps) => {
 
   return (
     <span className={cn(
-      "inline-flex min-w-[16px] items-center justify-center rounded-full bg-[#ef4444] px-1 text-[10px] font-black leading-4 text-white",
+      "inline-flex min-w-4 items-center justify-center rounded-full bg-[#ef4444] px-1 text-[10px] font-black leading-4 text-white",
       className
     )}>
       {displayCount}
