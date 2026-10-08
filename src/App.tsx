@@ -17,7 +17,7 @@ const SuggestionsPage = lazy(() => import("@/pages/SuggestionsPage"));
 // Loading fallback
 function PageLoader() {
   return (
-    <div className="relative flex min-h-[60vh] flex-col items-center justify-center overflow-hidden">
+    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden bg-[#f0f2f5] dark:bg-[#0a0a0a]">
       {/* Background glow effects (dark mode only) */}
       <div
         className="pointer-events-none absolute inset-0 hidden dark:block"
