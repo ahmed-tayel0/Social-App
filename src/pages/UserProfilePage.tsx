@@ -4,6 +4,7 @@ import { useUserProfile } from "@/features/profile/hooks/useUserProfile";
 import { useUserPosts } from "@/features/profile/hooks/useUserProfile";
 import { ProfileHeader } from "@/features/profile/components/ProfileHeader";
 import PostCard from "@/features/posts/components/PostCard";
+import { useToggleLike, useToggleBookmark } from "@/features/posts/hooks"; // ← ضيف ده
 import { followUser } from "@/features/profile/profileApi";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
@@ -15,8 +16,20 @@ export default function UserProfilePage() {
   const isOwn = user?._id === userId;
   const navigate = useNavigate();
 
-  const { data: profileData, isLoading: profileLoading, isError: profileError } = useUserProfile(userId || "");
-  const { data: postsData, isLoading: postsLoading, isFetching: postsFetching } = useUserPosts(userId || "");
+  const {
+    data: profileData,
+    isLoading: profileLoading,
+    isError: profileError,
+  } = useUserProfile(userId || "");
+  const {
+    data: postsData,
+    isLoading: postsLoading,
+    isFetching: postsFetching,
+  } = useUserPosts(userId || "");
+
+  // ← ضيف دول
+  const like = useToggleLike();
+  const bookmark = useToggleBookmark();
 
   const queryClient = useQueryClient();
   const followMutation = useMutation({
@@ -24,7 +37,7 @@ export default function UserProfilePage() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["profile", "user", userId] });
       queryClient.invalidateQueries({ queryKey: ["profile", "my-bookmarks"] });
-    }
+    },
   });
 
   const handleFollow = () => {
@@ -33,7 +46,6 @@ export default function UserProfilePage() {
     }
   };
 
-  // Determine if the profile is not found
   const isNotFound =
     profileError ||
     (!profileLoading && !profileData) ||
@@ -43,11 +55,21 @@ export default function UserProfilePage() {
   const isLoading = profileLoading || postsLoading;
   const isFetching = postsFetching;
 
-  // Flatten infinite query results for posts
-  const posts = postsData?.pages.flatMap(page => page.posts) ?? [];
-  const postsCount = postsData?.pages.reduce((total, page) => total + page.posts.length, 0) ?? 0;
+  const posts = postsData?.pages.flatMap((page) => page.posts) ?? [];
+  const postsCount =
+    postsData?.pages.reduce((total, page) => total + page.posts.length, 0) ?? 0;
 
-  const userData = profileData?.user ?? { _id: "", name: "", username: "", email: "", photo: "", cover: "", followersCount: 0, followingCount: 0, bookmarksCount: 0 };
+  const userData = profileData?.user ?? {
+    _id: "",
+    name: "",
+    username: "",
+    email: "",
+    photo: "",
+    cover: "",
+    followersCount: 0,
+    followingCount: 0,
+    bookmarksCount: 0,
+  };
 
   if (isLoading && !isNotFound) {
     return (
@@ -77,38 +99,37 @@ export default function UserProfilePage() {
     );
   }
 
-  // Dummy callback functions for PostCard (since we don't need actual functionality on other's profile)
-  const dummyCallback = () => {};
-
   return (
     <div className="space-y-6">
       <ProfileHeader
         user={userData}
         isOwn={isOwn}
         myPostsCount={postsCount}
-        followSlot={!isOwn ? (
-          <button
-            onClick={handleFollow}
-            disabled={followMutation.isPending}
-            className={`inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-extrabold transition ${
-              isFollowing
-                ? "border border-slate-300 bg-white text-slate-700 hover:bg-slate-100"
-                : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50 dark:border-[#2d2e2f] dark:bg-[#18191a] dark:text-[#e4e6eb] dark:hover:bg-[#242526]"
-            } disabled:opacity-60`}
-          >
-            {isFollowing ? (
-              <>
-                <UserCheck size={16} />
-                Following
-              </>
-            ) : (
-              <>
-                <UserPlus size={16} />
-                Follow
-              </>
-            )}
-          </button>
-        ) : undefined}
+        followSlot={
+          !isOwn ? (
+            <button
+              onClick={handleFollow}
+              disabled={followMutation.isPending}
+              className={`inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-extrabold transition ${
+                isFollowing
+                  ? "border border-slate-300 bg-white text-slate-700 hover:bg-slate-100"
+                  : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50 dark:border-[#2d2e2f] dark:bg-[#18191a] dark:text-[#e4e6eb] dark:hover:bg-[#242526]"
+              } disabled:opacity-60`}
+            >
+              {isFollowing ? (
+                <>
+                  <UserCheck size={16} />
+                  Following
+                </>
+              ) : (
+                <>
+                  <UserPlus size={16} />
+                  Follow
+                </>
+              )}
+            </button>
+          ) : undefined
+        }
       />
 
       {isFetching && (
@@ -132,9 +153,9 @@ export default function UserProfilePage() {
             <PostCard
               key={post._id}
               post={post}
-              onLike={dummyCallback}
-              onBookmark={dummyCallback}
-              onShare={dummyCallback}
+              onLike={(id: string) => like.mutate(id)}
+              onBookmark={(id: string) => bookmark.mutate(id)}
+              onShare={() => {}}
             />
           ))}
         </div>
