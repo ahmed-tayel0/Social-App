@@ -250,13 +250,15 @@ export default function CreatePost() {
           {showEmojiPicker && (
             <div
               ref={emojiRef}
-              className="absolute left-0 top-full z-40 mt-2"
-              style={{ width: 320 }}
+              className="fixed bottom-4 left-1/2 z-50 -translate-x-1/2 sm:absolute sm:bottom-auto sm:left-0 sm:top-full sm:mt-2 sm:translate-x-0"
+              style={{
+                width: "min(320px, calc(100vw - 2rem))",
+              }}
             >
               <EmojiPicker
                 onEmojiClick={handleEmojiClick}
                 theme={resolvedTheme === "dark" ? Theme.DARK : Theme.LIGHT}
-                width={320}
+                width="100%"
                 height={340}
                 searchPlaceholder="Search"
                 previewConfig={{ showPreview: false }}

@@ -12,7 +12,11 @@ export default function RegisterForm() {
   });
   const { mutate, isPending } = useRegister();
 
-  const { register, handleSubmit, formState: { errors } } = form;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = form;
 
   const onSubmit = handleSubmit((data) => {
     mutate(data);
@@ -21,9 +25,7 @@ export default function RegisterForm() {
   return (
     <form className="space-y-4" onSubmit={onSubmit}>
       <div className="space-y-2">
-        <label className="text-sm font-medium text-slate-700">
-          Full name
-        </label>
+        <label className="text-sm font-medium text-slate-700 dark:text-[#5c9dff]">Full name</label>
         <Input
           {...register("name")}
           icon={<Users className="h-4 w-4" />}
@@ -33,21 +35,17 @@ export default function RegisterForm() {
       </div>
 
       <div className="space-y-2">
-        <label className="text-sm font-medium text-slate-700">
-          Username (optional)
-        </label>
+        <label className="text-sm font-medium text-slate-700 dark:text-[#5c9dff]">Username</label>
         <Input
           {...register("username")}
           icon={<AtSign className="h-4 w-4" />}
-          placeholder="Username (optional)"
+          placeholder="Username"
           error={errors.username?.message}
         />
       </div>
 
       <div className="space-y-2">
-        <label className="text-sm font-medium text-slate-700">
-          Email address
-        </label>
+        <label className="text-sm font-medium text-slate-700 dark:text-[#5c9dff]">Email address</label>
         <Input
           {...register("email")}
           icon={<AtSign className="h-4 w-4" />}
@@ -60,7 +58,7 @@ export default function RegisterForm() {
       <div>
         <label
           htmlFor="gender"
-          className="mb-1.5 block text-sm font-bold text-slate-700 dark:text-[#e4e6eb]"
+          className="mb-1.5 block text-sm font-bold text-slate-700 dark:text-[#5c9dff]"
         >
           Gender
         </label>
@@ -96,9 +94,7 @@ export default function RegisterForm() {
       </div>
 
       <div className="space-y-2">
-        <label className="text-sm font-medium text-slate-700">
-          Date of birth
-        </label>
+        <label className="text-sm font-medium text-slate-700 dark:text-[#5c9dff]">Date of birth</label>
         <Input
           {...register("dateOfBirth")}
           icon={<Calendar className="h-4 w-4" />}
@@ -109,9 +105,7 @@ export default function RegisterForm() {
       </div>
 
       <div className="space-y-2">
-        <label className="text-sm font-medium text-slate-700">
-          Password
-        </label>
+        <label className="text-sm font-medium text-slate-700 dark:text-[#5c9dff]">Password</label>
         <Input
           {...register("password")}
           icon={<KeyRound className="h-4 w-4" />}
@@ -122,9 +116,7 @@ export default function RegisterForm() {
       </div>
 
       <div className="space-y-2">
-        <label className="text-sm font-medium text-slate-700">
-          Confirm password
-        </label>
+        <label className="text-sm font-medium text-slate-700 dark:text-[#5c9dff]">Confirm password</label>
         <Input
           {...register("rePassword")}
           icon={<KeyRound className="h-4 w-4" />}

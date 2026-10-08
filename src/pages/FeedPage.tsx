@@ -118,7 +118,7 @@ export default function FeedPage() {
 
         {/* Empty state */}
         {!feed.isLoading && posts.length === 0 && (
-          <div className="rounded-2xl border border-slate-200 bg-white p-10 text-center text-slate-500 shadow-sm">
+          <div className="rounded-2xl border border-slate-200 bg-white p-10 text-center text-slate-500 shadow-sm dark:border-[#2d2e2f] dark:bg-[#18191a] dark:text-[#b0b3b8]">
             No posts yet. Be the first one to publish.
           </div>
         )}

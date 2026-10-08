@@ -11,6 +11,7 @@ import {
   Users,
   Lock,
   ExternalLink,
+  ChevronRight,
 } from "lucide-react";
 import { useAppSelector } from "@/app/hooks";
 import { Avatar } from "@/shared/components/ui/Avatar";
@@ -308,68 +309,91 @@ export default function PostCard({
           </div>
         )}
 
-        <div className="flex items-center px-4 pt-3 pb-2 border-t border-slate-200 dark:border-[#2d2e2f]">
-          <div className="flex items-center gap-2 text-blue-600">
-            <div className="flex items-center justify-center w-8 h-8 bg-blue-100 rounded-full">
-              <ThumbsUp className="h-3 w-3" />
+        {/* ===== Stats Bar ===== */}
+        <div className="flex items-center justify-between px-4 pt-3 pb-2 border-t border-slate-200 dark:border-[#2d2e2f]">
+          {/* Likes count on the left */}
+          <div className="flex items-center gap-1.5">
+            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#1877f2] dark:bg-[#5c9dff]">
+              <ThumbsUp size={11} className="text-white" />
             </div>
-            <span className="text-[13px] font-medium">{likeCount}</span>
+            <span className="text-[13px] font-semibold text-slate-600 dark:text-[#b0b3b8]">
+              {likeCount}
+            </span>
           </div>
-          <div className="ml-auto flex flex-wrap items-center gap-2 text-[13px] text-slate-500 dark:text-[#b0b3b8]">
+
+          {/* Shares / Comments / View details on the right */}
+          <div className="flex items-center gap-2 text-[13px] text-slate-500 dark:text-[#b0b3b8]">
             <span>{post.sharesCount ?? 0} shares</span>
-            <span>·</span>
+            <span className="text-slate-300 dark:text-[#3a3b3c]">·</span>
             <span>{post.commentsCount ?? 0} comments</span>
             {!hideViewDetails ? (
               <>
-                <span>·</span>
-                <span
-                  className="cursor-pointer text-[#1877f2] dark:text:#5c9dff hover:underline"
+                <span className="text-slate-300 dark:text-[#3a3b3c]">·</span>
+                <button
                   onClick={() => navigate(`/posts/${post._id}`)}
+                  className="group inline-flex items-center gap-1 font-semibold text-[#1877f2] transition hover:text-[#166fe5] dark:text-[#5c9dff] dark:hover:text-[#7cb3ff]"
                 >
-                  View details
-                </span>
+                  <span className="relative">
+                    View details
+                    <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-current transition-all duration-300 group-hover:w-full" />
+                  </span>
+                  <ChevronRight
+                    size={14}
+                    className="transition-transform group-hover:translate-x-0.5"
+                  />
+                </button>
               </>
             ) : null}
           </div>
         </div>
 
-        <div className="grid grid-cols-4 gap-1 p-1">
+        {/* ===== Actions Bar ===== */}
+        <div className="flex items-center justify-between border-t border-slate-200 px-1 py-1 dark:border-[#2d2e2f]">
+          {/* Like */}
           <button
-            className="flex items-center justify-center gap-1 text-sm text-slate-500 dark:text-[#b0b3b8] hover:bg-slate-50 dark:hover:bg-[#2d2e2f]"
             onClick={handleLike}
+            className={`flex flex-1 items-center justify-center gap-2 rounded-lg py-2 text-sm font-semibold transition-colors ${
+              isLiked
+                ? "text-[#1877f2] dark:text-[#5c9dff]"
+                : "text-slate-600 hover:bg-slate-100 dark:text-[#b0b3b8] dark:hover:bg-[#2d2e2f]"
+            }`}
           >
-            <ThumbsUp
-              className={isLiked ? "h-3 w-3 text-blue-500" : "h-3 w-3 text-slate-400"}
-            />
+            <ThumbsUp size={18} className={isLiked ? "fill-current" : ""} />
             <span>Like</span>
           </button>
+
+          {/* Comment */}
           <button
-            className="flex items-center justify-center gap-1 text-sm text-slate-500 dark:text-[#b0b3b8] hover:bg-slate-50 dark:hover:bg-[#2d2e2f]"
             onClick={() => navigate(`/posts/${post._id}`)}
+            className="flex flex-1 items-center justify-center gap-2 rounded-lg py-2 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100 dark:text-[#b0b3b8] dark:hover:bg-[#2d2e2f]"
           >
-            <MessageCircle className="h-3 w-3" />
+            <MessageCircle size={18} />
             <span>Comment</span>
           </button>
+
+          {/* Share */}
           <button
-            className="flex items-center justify-center gap-1 text-sm text-slate-500 dark:text-[#b0b3b8] hover:bg-slate-50 dark:hover:bg-[#2d2e2f]"
             onClick={() => {
               onShare(post._id);
               setShowShareModal(true);
             }}
+            className="flex flex-1 items-center justify-center gap-2 rounded-lg py-2 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100 dark:text-[#b0b3b8] dark:hover:bg-[#2d2e2f]"
           >
-            <Share2 className="h-3 w-3" />
+            <Share2 size={18} />
             <span>Share</span>
           </button>
+
+          {/* Bookmark (separate, on the right) */}
           <button
-            className="flex items-center justify-center gap-1 text-sm text-slate-500 dark:text-[#b0b3b8] hover:bg-slate-50 dark:hover:bg-[#2d2e2f]"
             onClick={handleBookmark}
+            className={`flex items-center justify-center rounded-lg p-2 transition-colors ${
+              isBookmarked
+                ? "text-[#1877f2] dark:text-[#5c9dff]"
+                : "text-slate-600 hover:bg-slate-100 dark:text-[#b0b3b8] dark:hover:bg-[#2d2e2f]"
+            }`}
+            aria-label="Bookmark"
           >
-            <Bookmark
-              className={
-                isBookmarked ? "h-3 w-3 text-blue-500" : "h-3 w-3 text-slate-400"
-              }
-            />
-            <span>Bookmark</span>
+            <Bookmark size={18} className={isBookmarked ? "fill-current" : ""} />
           </button>
         </div>
       </div>

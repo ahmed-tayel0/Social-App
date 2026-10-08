@@ -24,7 +24,7 @@ export default function LoginForm() {
   return (
     <form className="space-y-3.5" onSubmit={handleSubmit(onSubmit)}>
       <div className="space-y-2">
-        <label className="text-sm font-medium text-slate-700">
+        <label className="text-sm font-medium text-slate-700 dark:text-[#5c9dff]">
           Email or username
         </label>
         <Input
@@ -36,7 +36,7 @@ export default function LoginForm() {
       </div>
 
       <div className="space-y-2">
-        <label className="text-sm font-medium text-slate-700">
+        <label className="text-sm font-medium text-slate-700 dark:text-[#5c9dff]">
           Password
         </label>
         <Input

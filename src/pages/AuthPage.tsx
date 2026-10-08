@@ -32,7 +32,7 @@ export default function AuthPage() {
       <div className="fixed right-4 top-4 z-50">
         <ThemeToggleButton />
       </div>
-      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center gap-6 sm:gap-8 lg:flex-row lg:items-center lg:justify-between">
+      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center gap-6 sm:gap-8 lg:flex-row lg:items-center lg:justify-between lg:min-h-[calc(100vh-6rem)]">
         {/* Left section: About Route Academy (hidden on mobile, visible on lg) */}
         <div className="hidden lg:flex lg:flex-col lg:items-start lg:gap-6">
           <h1 className="text-5xl font-extrabold tracking-tight text-[#00298d] dark:text-[#5c9dff] sm:text-6xl">
@@ -100,7 +100,7 @@ export default function AuthPage() {
         </div>
 
         {/* Right section: Auth card */}
-        <div className="w-full max-w-107.5">
+        <div className="w-full max-w-107.5 space-y-4">
           {/* On mobile only: small heading and subheading */}
           <div className="lg:hidden">
             <h1 className="text-2xl font-extrabold text-[#00298d] dark:text-[#5c9dff]">
