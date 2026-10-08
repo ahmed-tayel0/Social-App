@@ -250,10 +250,16 @@ export function ProfileHeader({
                 <div className="flex flex-col items-end gap-3">
                   {followSlot}
                   {!isOwn && !followSlot ? null : (
-                    <div className="grid w-full grid-cols-3 gap-2 lg:w-[520px]">
+                    <div
+                      className={`grid w-full gap-2 lg:w-130 ${
+                        isOwn ? "grid-cols-3" : "grid-cols-2"
+                      }`}
+                    >
                       <StatCard label="Followers" value={user.followersCount ?? 0} />
                       <StatCard label="Following" value={user.followingCount ?? 0} />
-                      <StatCard label="Bookmarks" value={user.bookmarksCount ?? 0} />
+                      {isOwn && (
+                        <StatCard label="Bookmarks" value={user.bookmarksCount ?? 0} />
+                      )}
                     </div>
                   )}
                 </div>
@@ -263,10 +269,14 @@ export function ProfileHeader({
               <div className="mt-5 grid gap-4 lg:grid-cols-[1.3fr_.7fr]">
                 {/* About */}
                 <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-[#2d2e2f] dark:bg-[#242526]">
-                  <h3 className="text-sm font-extrabold text-slate-800 dark:text-[#e4e6eb]">About</h3>
+                  <h3 className="text-sm font-extrabold text-slate-800 dark:text-[#e4e6eb]">
+                    About
+                  </h3>
                   <div className="mt-3 flex items-center gap-2 text-sm text-slate-600 dark:text-[#b0b3b8]">
                     <Mail size={15} className="text-slate-500 dark:text-[#b0b3b8]" />
-                    <span className="truncate dark:text-[#b0b3b8]">{user.email ?? "No email"}</span>
+                    <span className="truncate dark:text-[#b0b3b8]">
+                      {user.email ?? "No email"}
+                    </span>
                   </div>
                   <div className="mt-2 flex items-center gap-2 text-sm text-slate-600 dark:text-[#b0b3b8]">
                     <Users size={15} className="text-slate-500 dark:text-[#b0b3b8]" />
@@ -275,9 +285,13 @@ export function ProfileHeader({
                 </div>
 
                 {/* Mini cards */}
+                {/* Mini cards */}
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-                  <MiniCard label="My Posts" value={myPostsCount ?? 0} />
-                  <MiniCard label="Saved Posts" value={savedCount ?? 0} />
+                  <MiniCard
+                    label={isOwn ? "My Posts" : "Posts"}
+                    value={myPostsCount ?? 0}
+                  />
+                  {isOwn && <MiniCard label="Saved Posts" value={savedCount ?? 0} />}
                 </div>
               </div>
             </div>
@@ -354,16 +368,26 @@ function StatCard({ label, value }: { label: string; value: number }) {
       <p className="text-[11px] font-bold uppercase tracking-wide text-slate-500 sm:text-xs dark:text-[#b0b3b8]">
         {label}
       </p>
-      <p className="mt-1 text-2xl font-black text-slate-900 sm:text-3xl dark:text-[#e4e6eb]">{value}</p>
+      <p className="mt-1 text-2xl font-black text-slate-900 sm:text-3xl dark:text-[#e4e6eb]">
+        {value}
+      </p>
     </div>
   );
 }
 
 function MiniCard({ label, value }: { label: string; value: number }) {
   return (
-    <div className={cn("rounded-2xl border border-[#dbeafe] bg-[#f6faff] px-4 py-3 dark:border-[#263951] dark:bg-[#1a2a3a]")}>
-      <p className="text-xs font-bold uppercase tracking-wide text-[#1f4f96] dark:text-[#5c9dff]">{label}</p>
-      <p className="mt-1 text-2xl font-black text-slate-900 dark:text-[#e4e6eb]">{value}</p>
+    <div
+      className={cn(
+        "rounded-2xl border border-[#dbeafe] bg-[#f6faff] px-4 py-3 dark:border-[#263951] dark:bg-[#1a2a3a]"
+      )}
+    >
+      <p className="text-xs font-bold uppercase tracking-wide text-[#1f4f96] dark:text-[#5c9dff]">
+        {label}
+      </p>
+      <p className="mt-1 text-2xl font-black text-slate-900 dark:text-[#e4e6eb]">
+        {value}
+      </p>
     </div>
   );
 }
